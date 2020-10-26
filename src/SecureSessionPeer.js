@@ -11,5 +11,4 @@ module.exports = async (peer) => {
         publicKey : keys["publicKey"]
 
     })
-
 }
