@@ -7,8 +7,12 @@ module.exports = async(key) => {
         throw 'no key';
     }
     return Object.freeze({
-        encrypt: (msg, nonce) => {
-            return sodium.crypto_secretbox_easy(msg, nonce, key)
+        encrypt: (msg) => {
+            let nonce = sodium.randombytes_buf(sodium.crypto_secretbox_NONCEBYTES);
+            return {
+            ciphertext : sodium.crypto_secretbox_easy(msg, nonce, key), 
+            nonce
+            }
         }
     });
 }
